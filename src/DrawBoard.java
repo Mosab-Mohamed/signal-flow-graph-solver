@@ -22,7 +22,7 @@ public class DrawBoard extends JPanel{
 	Node currentNode , node1 , node2;
 	int numOfNodes = 0;
 	Image background ;
-	ArrayList<ArrayList<Double>> edges ;
+	ArrayList<ArrayList<Integer>> edges ;
 	ArrayList<ArrayList<Node>> outNode ;
 	
 	View view ;
@@ -31,7 +31,7 @@ public class DrawBoard extends JPanel{
 	
 	public DrawBoard(){
 	
-		edges = new ArrayList<ArrayList<Double>>();
+		edges = new ArrayList<ArrayList<Integer>>();
 		outNode = new ArrayList<ArrayList<Node>>();
 		
 		try {
@@ -106,10 +106,11 @@ public class DrawBoard extends JPanel{
 							setCurrentNode(false);
 							nodes.add(currentNode);
 							outNode.add(new ArrayList<Node>());
-							edges.add(new ArrayList<Double>());
+							edges.add(new ArrayList<Integer>());
 							currentNode.label = numOfNodes ;
+							view.log.append("node #"+numOfNodes+" has added succefuly\n");
 							numOfNodes++;
-							newNodeAdded = true ;
+							
 						}
 						
 						repaint();
@@ -130,12 +131,12 @@ public class DrawBoard extends JPanel{
 									}
 									else{
 										String sGain = "" ;
-										double gain = 0 ;
+										int gain = 0 ;
 										
 										while(gain==0.0 || sGain==""){
 											try{
 												 sGain = JOptionPane.showInputDialog(getComponentPopupMenu(), "enter the gain of this edge");
-												 gain = Double.parseDouble( sGain ); 
+												 gain = Integer.parseInt( sGain ); 
 											}
 											catch(Exception ex){
 												
@@ -144,7 +145,7 @@ public class DrawBoard extends JPanel{
 										
 										
 										if(edges.get(node1.label)==null){
-											edges.set(node1.label, new ArrayList<Double>());
+											edges.set(node1.label, new ArrayList<Integer>());
 										}
 										
 										if(outNode.get(node1.label)==null){
@@ -157,7 +158,7 @@ public class DrawBoard extends JPanel{
 										
 										log = "" ;
 								        for(int k=0 ; k<edges.size() ; k++){
-								        	ArrayList<Double> s = edges.get(k);
+								        	ArrayList<Integer> s = edges.get(k);
 								        	ArrayList<Node> m = outNode.get(k);
 								        	if(s!=null && !s.isEmpty()){
 								        		log += "node #"+ Integer.toString(k)+"\n" ;
@@ -289,7 +290,7 @@ public class DrawBoard extends JPanel{
         
         
         for(int i=0 ; i<edges.size() ; i++){
-        	ArrayList<Double> listEdge = edges.get(i);
+        	ArrayList<Integer> listEdge = edges.get(i);
         	ArrayList<Node> listNode = outNode.get(i);
         	
         	if(edges.get(i)!=null){

@@ -12,7 +12,8 @@ public class ButtonPanel extends JPanel implements ActionListener {
 		setName("button panel");
 		setBorder(new TitledBorder(null, "Options",
 				TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		setBounds(0, 0, 150, 750);
+//		setBounds(0, 0, 150, 750);
+		
 		setLayout(new FlowLayout());
 	}
 
